@@ -7,38 +7,47 @@
     <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="assets/boostrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="assets/boostrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
 
 
 </head>
+<Style>
+    #guestUserPage{
+        display: none;
+    }
+</Style>
 <body>
+
+
 <!-------------------------LandingPage-Start---------------------------------->
-<section class="container-fluid">
+<section class="container-fluid" id="landingPage">
     <div class="row" id="main-row">
         <div class="col-md-6">
             <div class="row" id="topic">
                 <h1><b> ~ <span style="color: orange">Kings</span> Car Rental ~</b></h1>
             </div>
             <div class="row" id="login">
-                <form class="w-75 col-sm-6" >
+                <form class="w-75 col-sm-6">
 
-                        <div class="form-group col-md-12 col-sm-6">
-                            <label style="font-family: 'Open Sans Condensed', sans-serif;">Username</label>
-                            <input type="text" class="form-control" placeholder="" name="userName" id="username">
+                    <div class="form-group col-md-12 col-sm-6">
+                        <label style="font-family: 'Open Sans Condensed', sans-serif;">Username</label>
+                        <input class="form-control" id="username" name="userName" placeholder="" type="text">
 
-                        </div>
+                    </div>
 
-                        <div class="form-group col-md-12  col-sm-6">
-                            <label style="font-family: 'Open Sans Condensed', sans-serif;">Password</label>
-                            <input type="password" class="form-control" placeholder="" name="password" id="password">
+                    <div class="form-group col-md-12  col-sm-6">
+                        <label style="font-family: 'Open Sans Condensed', sans-serif;">Password</label>
+                        <input class="form-control" id="password" name="password" placeholder="" type="password">
                     </div>
 
                     <div style="margin-top: 10px">
-                        <button type="button" class="btn btn-outline-secondary">Submit</button>
+                        <button class="btn btn-outline-secondary" type="button">Submit</button>
                     </div>
-                    <div style="margin-top: 10px" class="d-grid gap-2 ">
-                     <button type="button" class="btn btn-outline-dark" id="btnUserLogin" data-bs-toggle="modal" data-bs-target="#staticBackdrop"> Login</button>
+                    <div class="d-grid gap-2 " style="margin-top: 10px">
+                        <button class="btn btn-outline-dark" data-bs-target="#staticBackdrop" data-bs-toggle="modal" id="btnUserLogin"
+                                type="button"> Login
+                        </button>
                     </div>
 
                 </form>
@@ -46,84 +55,121 @@
 
         </div>
         <div class="col-md-6 col-sm-2 align-items-center">
-            <img src="assets/img/landingImg.png" class="mt-5" style="width: 650px">
+            <img class="mt-5" src="assets/img/landingImg.png" style="width: 650px">
         </div>
     </div>
 
     <div class="col-md-12 col-sm-2  w-100 text-center mt-5">
-        <h5 style="font-family: 'Poiret One', cursive;"><b><i>We Provide You The Best Car Services In Town , Rent Your Car Now .</i></b></h5>
+        <h5 style="font-family: 'Poiret One', cursive;"><b><i>We Provide You The Best Car Services In Town , Rent Your
+            Car Now .</i></b></h5>
     </div>
 </section>
 
 <!-------------------------LandingPage-End---------------------------------->
 
 <!-------------------------LoginModel-Start---------------------------------->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-<div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="userModalLabel" style="font-family: 'Open Sans Condensed', sans-serif;"><b>Register Customer</b></h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <form id="userLoginForm">
-                <div class="form-row">
-                    <label>Identity Card No</label>
-                    <input type="text" class="form-control" id="idNumber">
-                </div>
-                <br>
-                <div class="form-row">
-                    <label for="exampleFormControlFile1">Attach Id Copy</label>
-                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                </div>
-                <br>
-                <div class="form-row">
-                    <label>License No</label>
-                    <input type="text" class="form-control" id="licenseNo" >
-                </div>
-                <br>
-                <div class="form-row">
-                    <label for="exampleFormControlFile2">Attach License Copy</label>
-                    <input type="file" class="form-control-file" id="exampleFormControlFile2">
-                </div>
-                <br>
-                <div class="form-row">
-                    <label>Full Name</label>
-                    <input type="text" class="form-control" id="fullName" name="fullName">
-                </div>
-                <div class="form-row">
-                    <label>Contact</label>
-                    <input type="text" class="form-control" id="uContact" name="contact">
-                </div>
-                <div class="form-row">
-                    <label>E-Mail</label>
-                    <input type="email" class="form-control" id="uEmail" name="Email">
-                </div>
-                <div class="form-row">
-                    <label>UserName</label>
-                    <input type="text" class="form-control" id="loginUserName" name="userName">
-                </div>
-                <div class="form-row">
-                    <label>Password</label>
-                    <input type="password" class="form-control" name="password" >
-                </div>
-                <div class="form-row">
-                    <label>Confirm Password</label>
-                    <input type="password" class="form-control" id="loginPassword" name="loginPassword">
-                </div>
-            </form>
-        </div>
-        <div class="modal-footer">
+<div aria-hidden="true" aria-labelledby="staticBackdropLabel" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
+     id="staticBackdrop" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="userModalLabel" style="font-family: 'Open Sans Condensed', sans-serif;"><b>Register
+                    Customer</b></h5>
+                <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <div class="modal-body">
+                <form id="userLoginForm">
+                    <div class="form-row">
+                        <label>Identity Card No</label>
+                        <input class="form-control" id="idNumber" type="text">
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <label for="exampleFormControlFile1">Attach Id Copy</label>
+                        <input class="form-control-file" id="exampleFormControlFile1" type="file">
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <label>License No</label>
+                        <input class="form-control" id="licenseNo" type="text">
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <label for="exampleFormControlFile2">Attach License Copy</label>
+                        <input class="form-control-file" id="exampleFormControlFile2" type="file">
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <label>Full Name</label>
+                        <input class="form-control" id="fullName" name="fullName" type="text">
+                    </div>
+                    <div class="form-row">
+                        <label>Contact</label>
+                        <input class="form-control" id="uContact" name="contact" type="text">
+                    </div>
+                    <div class="form-row">
+                        <label>E-Mail</label>
+                        <input class="form-control" id="uEmail" name="Email" type="email">
+                    </div>
+                    <div class="form-row">
+                        <label>UserName</label>
+                        <input class="form-control" id="loginUserName" name="userName" type="text">
+                    </div>
+                    <div class="form-row">
+                        <label>Password</label>
+                        <input class="form-control" name="password" type="password">
+                    </div>
+                    <div class="form-row">
+                        <label>Confirm Password</label>
+                        <input class="form-control" id="loginPassword" name="loginPassword" type="password">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
 
-            <button type="button" class="btn btn-danger" data-bs-dismiss="modal"style=" font-family: 'Open Sans Condensed', sans-serif;" >Close</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal" style="font-family: 'Open Sans Condensed', sans-serif;">Guest User</button>
-            <button type="button" class="btn btn-dark" style="font-family: 'Open Sans Condensed', sans-serif;">Register</button>
+                <button class="btn btn-danger" data-bs-dismiss="modal" style=" font-family: 'Open Sans Condensed', sans-serif;"
+                        type="button">Close
+                </button>
+
+                <button class="btn btn-secondary" data-bs-dismiss="modal" id="btnGuest"
+                        style="font-family: 'Open Sans Condensed', sans-serif;" type="button">Guest User
+                </button>
+
+                <button class="btn btn-dark" style="font-family: 'Open Sans Condensed', sans-serif;" type="button">
+                    Register
+                </button>
+            </div>
         </div>
     </div>
 </div>
-</div>
+
+<!-------------------------GustPage-Start---------------------------------->
+<section class="container-fluid" id="guestUserPage">
+    <div class="row bg-dark">
+        <div class="col-md-1"></div>
+        <div class="col-md-3 navMargin">
+            <h2 style="font-family: 'Poiret One', cursive; color: lightgray"><b> <span style="color: orange">Kings</span> Car Rental</b></h2>
+        </div>
+        <div class="col-md-2 "></div>
+        <div class="col-md-2 "></div>
+
+        <div class="col-md-2 navMargin">
+            <button class="btn btn-outline-light" style="width: 100%" id="btnViewCars" type="button">View Cars</button>
+        </div>
+        <div class="col-md-2 navMargin">
+            <button class="btn btn-outline-light" style="width: 100%" id="btnReturn" type="button">Return</button>
+        </div>
+    </div>
+
+
+</section>
 
 
 <script src="assets/boostrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/JQuery/jquery-3.6.1.min.js"></script>
+<script src="assets/js/navigation.js"></script>
+<script>
+
+</script>
 </body>
 </html>
