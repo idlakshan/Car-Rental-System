@@ -274,6 +274,7 @@
 <!-------------------------GustPage-End---------------------------------->
 
 <!-------------------------AdminPage-Start---------------------------------->
+<!-------------------------AdminPage-NavBar-Start---------------------------------->
 <section class="container-fluid" id="adminPage">
     <div class="row">
         <div class="fixed-top">
@@ -313,8 +314,9 @@
             </nav>
         </div>
     </div>
+    <!-------------------------AdminPage-NavBar-End---------------------------------->
+    <!-------------------------AdminPage-Dashboard Start---------------------------------->
     <div id="dashBoard">
-  <!--      <div class="container-fluid mt-5" >-->
             <div class="row justify-content-center" style="margin-top: 110px;margin-bottom: 50px" >
                 <div class="col-3">
                     <div class="p-3 border bg-light mb-2">
@@ -386,7 +388,114 @@
                     </div>
                 </div>
             </div>
-       <!-- </div>-->
+    </div>
+    <!-------------------------AdminPage-Dashboard-End---------------------------------->
+
+    <!-------------------------AdminPage-CarManage-Start---------------------------------->
+    <div id="carManage">
+        <form style="margin-top: 110px" class="container-fluid" action="">
+            <div class="row mb-3 justify-content-center">
+                <div class="form-group col-md-2">
+                    <label class="col-form-label col-form-label-sm">Register No</label>
+                    <input type="text" class="form-control form-control-sm" id="vehicleRegNo" name="vehicleRegNo">
+                    <small class="form-text text-muted">Enter Register No</small>
+                </div>
+                <div class="form-group col-md-2">
+                    <label class="col-form-label col-form-label-sm">Brand</label>
+                    <input type="text" class="form-control form-control-sm" id="vehicleBrand" name="vehicleBrand">
+                </div>
+                <div class="form-group col-md-2">
+                    <label class="col-form-label col-form-label-sm">Type Select</label>
+                    <select class="form-control form-control-sm" id="vehicleType" name="vehicleType">
+                        <option>Luxury</option>
+                        <option>Premium</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <label class="col-form-label col-form-label-sm">No Of Passengers</label>
+                    <input type="text" class="form-control form-control-sm" id="passengers" name="passengers">
+                </div>
+                <div class=" form-group col-md-3 custom-file" style="margin-top: 30px;">
+                    <input type="file" class="custom-file-input form-control form-control-sm" id="vehicleImg" name="vehicleImg">
+                    <label class="custom-file-label col-form-label col-form-label-sm" for="vehicleImg">Choose Image</label>
+                </div>
+            </div>
+            <div class="row mb-5 justify-content-center" >
+                <div class="form-group col-md-2">
+                    <label class="col-form-label col-form-label-sm">Transmission Type</label>
+                    <select class="form-control form-control-sm" id="transmissionType" name="transmissionType">
+                        <option>Auto</option>
+                        <option>Mannual</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <label class="col-form-label col-form-label-sm">Fuel Type</label>
+                    <select class="form-control form-control-sm" id="fuelType" name="fuelType">
+                        <option>Petrol</option>
+                        <option>Diesel</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <label class="col-form-label col-form-label-sm">Free Mileage</label>
+                    <input type="text" class="form-control form-control-sm" id="mileage" name="mileage">
+                </div>
+                <div class="form-group col-md-2">
+                    <label class="col-form-label col-form-label-sm">Price per Extra KM</label>
+                    <input type="text" class="form-control form-control-sm" id="pricePerExtraKm" name="pricePerExtraKm">
+                </div>
+            </div>
+
+            <div class="row mb-5 justify-content-center">
+                <div class="form-group col-md-2">
+                    <label class="col-form-label col-form-label-sm">Daily Rate</label>
+                    <input type="text" class="form-control form-control-sm" id="dailyRate" name="dailyRate">
+                </div>
+                <div class="form-group col-md-2">
+                    <label class="col-form-label col-form-label-sm">Free KM for a day</label>
+                    <input type="text" class="form-control form-control-sm" id="freeKmForDay" name="freeKmForDay">
+                </div>
+                <div class="form-group col-md-2">
+                    <label class="col-form-label col-form-label-sm">Monthly Rate</label>
+                    <input type="text" class="form-control form-control-sm" id="monthlyRate" name="monthlyRate">
+                </div>
+                <div class="form-group col-md-2">
+                    <label class="col-form-label col-form-label-sm">Free KM for a month</label>
+                    <input type="text" class="form-control form-control-sm" id="freeKmForMonth" name="freeKmForMonth">
+                </div>
+
+                <div class="form-group col-md-3" style="margin-top: 30px;">
+                    <button class="btn btn-outline-dark btn-sm" type="button" id="btnAddCar">Add Car</button>
+                    <button class="btn btn-outline-warning btn-sm" type="button" id="btnUpdateCar">Update Car</button>
+                    <button class="btn btn-outline-danger btn-sm" type="button" id="btnDeleteCar">Delete Car</button>
+                </div>
+            </div>
+        </form>
+
+        <div class=" justify-content-center">
+            <table class="table table-striped table-hover table-sm" style="margin-top: 5px;margin-bottom: 10px">
+                <thead>
+                <tr>
+                    <th scope="col">Reg No</th>
+                    <th scope="col">Brand</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Passengers</th>
+                    <th scope="col">Transmission</th>
+                    <th scope="col">Fuel</th>
+                    <th scope="col">Mileage</th>
+                    <th scope="col">Per extra KM</th>
+                    <th scope="col">Daily.R</th>
+                    <th scope="col">Free KM.Day</th>
+                    <th scope="col">Monthly.R</th>
+                    <th scope="col">Free KM.Month</th>
+
+                </tr>
+                </thead>
+                <tbody id="tblCars">
+
+                </tbody>
+            </table>
+        </div>
+
     </div>
 
 </section>

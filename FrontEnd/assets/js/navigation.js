@@ -18,6 +18,8 @@ $("#btnSubmit").click(function (){
         $("#adminPage").css('display','block');
         $("#dashBoard").css('display','block')
         $("#landingPage").css('display','none');
+        $("#carManage").css('display','none');
+
     }else if (UserName=="" && password==""){
         alert("Missing Fields")
     }
@@ -26,6 +28,14 @@ $("#btnSubmit").click(function (){
 
 $("#btnDashboard").click(function (){
     $("#dashBoard").css('display','block');
+    $("#carManage").css('display','none');
+
+});
+$("#btnCarManage").click(function (){
+    $("#adminPage").css('display','block');
+    $("#carManage").css('display','block');
+    $("#dashBoard").css('display','none');
     $("#landingPage").css('display','none');
+
 
 });
