@@ -13,7 +13,13 @@
 
 </head>
 <Style>
-    #guestUserPage{
+    #guestUserPage {
+        display: none;
+    }
+    #adminPage {
+        display: none;
+    }
+    #dashBoard{
         display: none;
     }
 </Style>
@@ -32,20 +38,21 @@
 
                     <div class="form-group col-md-12 col-sm-6">
                         <label style="font-family: 'Open Sans Condensed', sans-serif;">Username</label>
-                        <input class="form-control" id="username" name="userName" placeholder="" type="text">
+                        <input class="form-control" id="txtUserName" name="userName" placeholder="" type="text">
 
                     </div>
 
                     <div class="form-group col-md-12  col-sm-6">
                         <label style="font-family: 'Open Sans Condensed', sans-serif;">Password</label>
-                        <input class="form-control" id="password" name="password" placeholder="" type="password">
+                        <input class="form-control" id="txtPassword" name="password" placeholder="" type="password">
                     </div>
 
                     <div style="margin-top: 10px">
-                        <button class="btn btn-outline-secondary" type="button">Submit</button>
+                        <button class="btn btn-outline-secondary" type="button" id="btnSubmit">Submit</button>
                     </div>
                     <div class="d-grid gap-2 " style="margin-top: 10px">
-                        <button class="btn btn-outline-dark" data-bs-target="#staticBackdrop" data-bs-toggle="modal" id="btnUserLogin"
+                        <button class="btn btn-outline-dark" data-bs-target="#staticBackdrop" data-bs-toggle="modal"
+                                id="btnUserLogin"
                                 type="button"> Login
                         </button>
                     </div>
@@ -55,7 +62,7 @@
 
         </div>
         <div class="col-md-6 col-sm-2 align-items-center">
-            <img class="mt-5" src="assets/img/landingImg.png" style="width: 650px">
+            <img class="mt-5" src="assets/img/landingImg.png" style="width: 750px">
         </div>
     </div>
 
@@ -68,7 +75,8 @@
 <!-------------------------LandingPage-End---------------------------------->
 
 <!-------------------------LoginModel-Start---------------------------------->
-<div aria-hidden="true" aria-labelledby="staticBackdropLabel" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
+<div aria-hidden="true" aria-labelledby="staticBackdropLabel" class="modal fade" data-bs-backdrop="static"
+     data-bs-keyboard="false"
      id="staticBackdrop" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -127,7 +135,8 @@
             </div>
             <div class="modal-footer">
 
-                <button class="btn btn-danger" data-bs-dismiss="modal" style=" font-family: 'Open Sans Condensed', sans-serif;"
+                <button class="btn btn-danger" data-bs-dismiss="modal"
+                        style=" font-family: 'Open Sans Condensed', sans-serif;"
                         type="button">Close
                 </button>
 
@@ -148,118 +157,238 @@
     <div class="row bg-dark">
         <div class="col-md-1"></div>
         <div class="col-md-3 navMargin">
-            <h2 style="font-family: 'Poiret One', cursive; color: lightgray"><b> <span style="color: orange">Kings</span> Car Rental</b></h2>
+            <h2 style="font-family: 'Poiret One', cursive; color: lightgray"><b> <span
+                    style="color: orange">Kings</span> Car Rental</b></h2>
         </div>
         <div class="col-md-2 "></div>
         <div class="col-md-2 "></div>
 
         <div class="col-md-2 navMargin">
-            <button class="btn btn-outline-light" style="width: 100%" id="btnViewCars" type="button">View Cars</button>
+            <button class="btn btn-outline-light" id="btnViewCars" style="width: 100%" type="button">View Cars</button>
         </div>
         <div class="col-md-2 navMargin">
-            <button class="btn btn-outline-light" style="width: 100%" id="btnReturn" type="button">Return</button>
+            <button class="btn btn-outline-light" id="btnReturn" style="width: 100%" type="button">Return</button>
         </div>
     </div>
     <div class="carContainer">
         <div class="box">
             <div class="box-img">
-                <img src="assets/img/allion.jpg" alt="">
+                <img alt="" src="assets/img/allion.jpg">
             </div>
             <h3>Toyota Allion</h3>
             <h2>Rs 5800 <span>Day</span></h2>
-            <a href="#" class="btn">Rent Now</a>
+            <a class="btn" href="#">Rent Now</a>
         </div>
 
         <div class="box">
             <div class="box-img">
-                <img src="assets/img/alto.jpg" alt="">
+                <img alt="" src="assets/img/alto.jpg">
             </div>
             <h3>Suzuki Alto</h3>
             <h2>Rs 2500 <span>Day</span></h2>
-            <a href="#" class="btn">Rent Now</a>
+            <a class="btn" href="#">Rent Now</a>
         </div>
 
         <div class="box">
             <div class="box-img">
-                <img src="assets/img/aqua.jpg" alt="">
+                <img alt="" src="assets/img/aqua.jpg">
             </div>
             <h3>Toyota Aqua</h3>
             <h2>Rs 5000 <span>Day</span></h2>
-            <a href="#" class="btn">Rent Now</a>
+            <a class="btn" href="#">Rent Now</a>
         </div>
 
         <div class="box">
             <div class="box-img">
-                <img src="assets/img/axio.jpg" alt="">
+                <img alt="" src="assets/img/axio.jpg">
             </div>
             <h3>Toyota Axio</h3>
             <h2>Rs 6000 <span>Day</span></h2>
-            <a href="#" class="btn">Rent Now</a>
+            <a class="btn" href="#">Rent Now</a>
         </div>
 
         <div class="box">
             <div class="box-img">
-                <img src="assets/img/bezza.jpg" alt="">
+                <img alt="" src="assets/img/bezza.jpg">
             </div>
             <h3>Perodua Bezza</h3>
             <h2>Rs 5500 <span>Day</span></h2>
-            <a href="#" class="btn">Rent Now</a>
+            <a class="btn" href="#">Rent Now</a>
         </div>
 
         <div class="box">
             <div class="box-img">
-                <img src="assets/img/celerio.jpg" alt="">
+                <img alt="" src="assets/img/celerio.jpg">
             </div>
             <h3>Suzuki Celerio</h3>
             <h2>Rs 3300 <span>Day</span></h2>
-            <a href="#" class="btn">Rent Now</a>
+            <a class="btn" href="#">Rent Now</a>
         </div>
 
         <div class="box">
             <div class="box-img">
-                <img src="assets/img/i8.jpg" alt="">
+                <img alt="" src="assets/img/i8.jpg">
             </div>
             <h3>BMW i8</h3>
             <h2>Rs 18000 <span>Day</span></h2>
-            <a href="#" class="btn">Rent Now</a>
+            <a class="btn" href="#">Rent Now</a>
         </div>
 
         <div class="box">
             <div class="box-img">
-                <img src="assets/img/perodua.jpg" alt="">
+                <img alt="" src="assets/img/perodua.jpg">
             </div>
             <h3>Perodua Axia</h3>
             <h2>Rs 3800 <span>Day</span></h2>
-            <a href="#" class="btn">Rent Now</a>
+            <a class="btn" href="#">Rent Now</a>
         </div>
 
         <div class="box">
             <div class="box-img">
-                <img src="assets/img/premio.jpg" alt="">
+                <img alt="" src="assets/img/premio.jpg">
             </div>
             <h3>Toyota Premio</h3>
             <h2>Rs 10000 <span>/Day</span></h2>
-            <a href="#" class="btn">Rent Now</a>
+            <a class="btn" href="#">Rent Now</a>
         </div>
 
         <div class="box">
             <div class="box-img">
-                <img src="assets/img/benz%202019.jpg" alt="">
+                <img alt="" src="assets/img/benz%202019.jpg">
             </div>
             <h3>Mercedes Benz C200</h3>
             <h2>Rs 18000 <span>/Day</span></h2>
-            <a href="#" class="btn">Rent Now</a>
+            <a class="btn" href="#">Rent Now</a>
         </div>
         <div class="box">
             <div class="box-img">
-                <img src="assets/img/prius.jpg" alt="">
+                <img alt="" src="assets/img/prius.jpg">
             </div>
             <h3>toyota Prius</h3>
             <h2>Rs 5000 <span>/Day</span></h2>
-            <a href="#" class="btn">Rent Now</a>
+            <a class="btn" href="#">Rent Now</a>
         </div>
 
     </div>
+</section>
+<!-------------------------GustPage-End---------------------------------->
+
+<!-------------------------AdminPage-Start---------------------------------->
+<section class="container-fluid" id="adminPage">
+    <div class="row">
+        <div class="fixed-top">
+            <div class="collapse" id="navbarToggleExternalContent">
+                <div class="bg-dark p-4">
+                    <div class="row" style="margin: 10px;">
+                        <h6 class="text-white h4" style="font-family: 'Poiret One', cursive;"><span
+                                style="color: orange">King</span> Cars ~ Administrator Control</h6>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <button class="btn btn-outline-light btn-block" id="btnDashboard" style="width: 100%"
+                                    type="button">DashBoard
+                            </button>
+                        </div>
+                        <div class="col-md-2">
+                            <button class="btn btn-outline-light btn-block" id="btnCarManage" style="width: 100%"
+                                    type="button">Manage
+                                Cars
+                            </button>
+                        </div>
+                        <div class="col-md-2">
+                            <button class="btn btn-outline-light btn-block" id="btnUserManage" style="width: 100%"
+                                    type="button">Manage
+                                Users
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <nav class="navbar navbar-dark bg-dark">
+                <button aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"
+                        class="navbar-toggler" data-bs-target="#navbarToggleExternalContent"
+                        data-bs-toggle="collapse" type="button">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </nav>
+        </div>
+    </div>
+    <div id="dashBoard">
+  <!--      <div class="container-fluid mt-5" >-->
+            <div class="row justify-content-center" style="margin-top: 110px;margin-bottom: 50px" >
+                <div class="col-3">
+                    <div class="p-3 border bg-light mb-2">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">No.Of Registered Users :</h5>
+                                <p class="card-text">210</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-3 border bg-light mb-2">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">No.Of Occupied Drivers :</h5>
+                                <p class="card-text">20</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-3 border bg-light mb-2">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">No.Of Available Drivers :</h5>
+                                <p class="card-text">6</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="card">
+                        <img alt="..." class="card-img-top mb-2" src="assets/img/dashboard.jpeg">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Bookings For The Day :</h5>
+                            <p class="card-text">14 Bookings</p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                    </div>
+                    <div class="card bg-secondary text-white text-center p-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Active Bookings For The Day :</h5>
+                            <p class="card-text">6 Bookings</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="p-3 border bg-light mb-2">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <h5 class="card-title">No.Of Reserved Cars :</h5>
+                                <p class="card-text">2</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-3 border bg-light mb-2">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <h5 class="card-title">No.Of Available Cars :</h5>
+                                <p class="card-text">12</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-3 border bg-light mb-2">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <h5 class="card-title">Cars Under Maintenance :</h5>
+                                <p class="card-text">2</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+       <!-- </div>-->
+    </div>
+
 </section>
 
 
