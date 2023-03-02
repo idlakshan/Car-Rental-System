@@ -13,6 +13,14 @@ $("#btnRegister").click(function (){
     $("#landingPage").css('display','none');
 
 });
+$("#btnViewCars").click(function (){
+    $("#guestUserPage").css('display','block');
+    $("#register").css('display','none');
+    $("#carView").css('display','block')
+    $("#landingPage").css('display','none');
+
+});
+
 
 $("#btnReturn").click(function (){
     $("#landingPage").css('display','block');
@@ -32,17 +40,28 @@ $("#btnSubmit").click(function (){
         $("#landingPage").css('display','none');
         $("#carManage").css('display','none');
         $("#userManage").css('display','none');
+        $("#adminManage").css('display','none');
+        clearTextField();
 
     }else if (UserName=="" && password==""){
         alert("Missing Fields")
+    }else {
+        alert("Please Check UserName and Password ")
+        clearTextField();
     }
 
 });
+
+function clearTextField(){
+    $("#txtUserName").val("");
+    $("#txtPassword").val("");
+}
 
 $("#btnDashboard").click(function (){
     $("#dashBoard").css('display','block');
     $("#carManage").css('display','none');
     $("#userManage").css('display','none');
+    $("#adminManage").css('display','none');
 
 });
 $("#btnCarManage").click(function (){
@@ -51,6 +70,7 @@ $("#btnCarManage").click(function (){
     $("#dashBoard").css('display','none');
     $("#landingPage").css('display','none');
     $("#userManage").css('display','none');
+    $("#adminManage").css('display','none');
 
 
 });
@@ -60,6 +80,16 @@ $("#btnUserManage").click(function (){
     $("#dashBoard").css('display','none');
     $("#landingPage").css('display','none');
     $("#carManage").css('display','none');
+    $("#adminManage").css('display','none');
+});
+$("#btnAdminManage").click(function (){
+    $("#adminPage").css('display','block');
+    $("#adminManage").css('display','block');
+    $("#userManage").css('display','none');
+    $("#dashBoard").css('display','none');
+    $("#landingPage").css('display','none');
+    $("#carManage").css('display','none');
+
 });
 
 $("#btnReturnAdmin").click(function (){
