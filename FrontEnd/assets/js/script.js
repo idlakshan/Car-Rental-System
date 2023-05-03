@@ -17,3 +17,11 @@ btnPopup.addEventListener('click',()=>{
 iconClose.addEventListener('click',()=>{
     wrapper.classList.remove('active-popup');
 });
+
+
+//-----header
+const header=document.querySelector('header');
+
+window.addEventListener('scroll',()=>{
+  header.classList.toggle('shadow',window.scrollY >0)
+});
