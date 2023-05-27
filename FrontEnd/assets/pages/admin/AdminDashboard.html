@@ -156,14 +156,17 @@
             <button type="button" id="btnUpdate">Update</button>
           </div>
 
-          <div class="browse">
-            <input type="search" placeholder="ID" class="record-search" id="txtAdminId" name="adminId">
-            <input type="search" placeholder="Name" class="record-search" id="txtAdminName" name="adminName">
-            <input type="search" placeholder="Address" class="record-search" id="txtAdminAddress" name="adminAddress">
-            <input type="search" placeholder="Email" class="record-search" id="txtAdminEmail" name="adminEmail">
-            <input type="search" placeholder="Password" class="record-search" id="txtAdminPassword" name="adminPassword">
-          </div>
+          <form action="" id="adminForm">
+            <div class="browse">
+              <input type="search" placeholder="ID" class="record-search" id="txtAdminId" name="adminId">
+              <input type="search" placeholder="Name" class="record-search" id="txtAdminName" name="adminName">
+              <input type="search" placeholder="Address" class="record-search" id="txtAdminAddress" name="adminAddress">
+              <input type="search" placeholder="Email" class="record-search" id="txtAdminEmail" name="adminEmail">
+              <input type="search" placeholder="Password" class="record-search" id="txtAdminPassword" name="adminPassword">
+            </div>
         </div>
+          </form>
+
 
         <div>
           <table width="100%">
@@ -233,6 +236,47 @@
 
     });
   }
+
+
+
+
+
+
+  $("#btnUpdate").click(function (){
+
+    let adminId = $("#txtAdminId").val();
+    let adminName = $("#txtAdminName").val();
+    let adminAddress = $("#txtAdminAddress").val();
+    let adminEmail = $("#txtAdminEmail").val();
+    let adminPassword = $("#txtAdminPassword").val();
+
+    let admin={
+      adminId:adminId,
+      adminName:adminName,
+      adminAddress:adminAddress,
+      adminEmail:adminEmail,
+      adminPassword:adminPassword,
+    }
+
+
+    $.ajax({
+      url: "http://localhost:8080/Easy_Car_Rental_war/admin",
+      method: "put",
+      contentType:"application/json",
+      data:JSON.stringify(admin),
+      dataType: "json",
+      success:function (resp){
+        alert(resp.message)
+        loadAllCustomer();
+      },
+      error:function (error){
+        alert(JSON.parse(error.responseText).message);
+      }
+
+    });
+  });
+
+
 
 </script>
 </body>

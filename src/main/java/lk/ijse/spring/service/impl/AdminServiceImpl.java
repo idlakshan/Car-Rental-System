@@ -31,6 +31,11 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public void updateAdmin(AdminDTO adminDTO) {
+        if (!adminRepo.existsById(adminDTO.getAdminId())){
+            throw new RuntimeException(adminDTO.getAdminId()+" Admin Not Available to Update..!");
+        }
+         adminRepo.save(mapper.map(adminDTO,Admin.class));
+
 
     }
 }
