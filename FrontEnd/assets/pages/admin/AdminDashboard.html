@@ -157,11 +157,11 @@
           </div>
 
           <div class="browse">
-            <input type="search" placeholder="ID" class="record-search" name="adminId">
-            <input type="search" placeholder="Address" class="record-search" name="adminAddress">
-            <input type="search" placeholder="Name" class="record-search" name="adminName">
-            <input type="search" placeholder="Email" class="record-search" name="adminEmail">
-            <input type="search" placeholder="Password" class="record-search" name="adminPassword">
+            <input type="search" placeholder="ID" class="record-search" id="txtAdminId" name="adminId">
+            <input type="search" placeholder="Name" class="record-search" id="txtAdminName" name="adminName">
+            <input type="search" placeholder="Address" class="record-search" id="txtAdminAddress" name="adminAddress">
+            <input type="search" placeholder="Email" class="record-search" id="txtAdminEmail" name="adminEmail">
+            <input type="search" placeholder="Password" class="record-search" id="txtAdminPassword" name="adminPassword">
           </div>
         </div>
 
@@ -170,8 +170,8 @@
             <thead>
             <tr>
               <th><span class="las la-sort"></span>#ID</th>
-              <th><span class="las la-sort"></span> ADDRESS</th>
               <th><span class="las la-sort"></span> NAME</th>
+              <th><span class="las la-sort"></span> ADDRESS</th>
               <th><span class="las la-sort"></span> EMAIL</th>
               <th><span class="las la-sort"></span> PASSWORD</th>
             </tr>
@@ -190,5 +190,50 @@
 
 </div>
 
+<script src="../../boostrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../JQuery/jquery-3.6.1.min.js"></script>
+<script>
+
+  loadAllCustomer();
+
+  function loadAllCustomer(){
+
+    $("#tblAdmin").empty();
+
+    $.ajax({
+      url:"http://localhost:8080/Easy_Car_Rental_war/admin",
+      method:"get",
+      dataType:"json",
+      success: function (resp){
+        for (let admin of resp.data) {
+         // console.log(resp.data);
+          let row = `<tr><td>${admin.adminId}</td><td>${admin.adminName}</td><td>${admin.adminAddress}</td><td>${admin.adminEmail}</td><td>${admin.adminPassword}</td></tr>`;
+          $("#tblAdmin").append(row);
+
+        }
+      bindRowAdminClickEvent();
+      }
+
+    });
+  }
+
+  function bindRowAdminClickEvent(){
+    $("#tblAdmin>tr").click(function (){
+      let adminId=$(this).children(":eq(0)").text();
+      let adminName=$(this).children(":eq(1)").text();
+      let adminAddress=$(this).children(":eq(2)").text();
+      let adminEmail=$(this).children(":eq(3)").text();
+      let adminPassword=$(this).children(":eq(4)").text();
+
+      $("#txtAdminId").val(adminId);
+      $("#txtAdminName").val(adminName);
+      $("#txtAdminAddress").val(adminAddress);
+      $("#txtAdminEmail").val(adminEmail);
+      $("#txtAdminPassword").val(adminPassword);
+
+    });
+  }
+
+</script>
 </body>
 </html>
