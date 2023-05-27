@@ -106,22 +106,20 @@
                   <div class="container">
                     <div class="row d-flex justify-content-center">
                       <div class="col-8 mt-3">
-                        <form>
+                        <form id="driverForm">
                           <div class="row">
                             <div class="mb-3 col-6">
                               <label class="form-label" for="txtDriverId">Driver
                                 ID</label>
-                              <input class="form-control"
-                                     id="txtDriverId"
-                                     placeholder="Driver ID" type="text">
+                              <input class="form-control" id="txtDriverId" placeholder="Driver ID" type="text" name="driverId">
                             </div>
 
                             <div class="mb-3 col-6">
                               <label class="form-label" for="txtDriverFirstName">First
-                                Name</label>
+                                Name </label>
                               <input class="form-control" id="txtDriverFirstName"
                                      placeholder="First Name"
-                                     type="text">
+                                     type="text" name="driverFirstName">
                             </div>
 
                             <div class="mb-3 col-6">
@@ -129,7 +127,7 @@
                                 Name</label>
                               <input class="form-control" id="txtDriverLastName"
                                      placeholder="Last Name"
-                                     type="text">
+                                     type="text" name="driverLastName">
                             </div>
 
                             <div class="mb-3 col-6">
@@ -137,7 +135,7 @@
                                 Number</label>
                               <input class="form-control" id="txtContactNum"
                                      placeholder="Contact"
-                                     type="text">
+                                     type="text" name="driverContactNum">
                             </div>
 
                             <div class="mb-3 col-6">
@@ -145,22 +143,20 @@
                                 Address</label>
                               <input class="form-control" id="txtEmailAddress"
                                      placeholder="Email"
-                                     type="text">
+                                     type="text" name="driverEmail">
                             </div>
 
                             <div class="mb-3 col-6">
                               <label class="form-label" for="txtAddress">Address</label>
                               <input class="form-control" id="txtAddress"
                                      placeholder="Address"
-                                     type="text">
+                                     type="text" name="driverAddress">
                             </div>
 
                             <div class="mb-3 col-6">
                               <label class="form-label" for="txtDrivingLicense">Driving
                                 License Number</label>
-                              <input class="form-control" id="txtDrivingLicense"
-                                     placeholder="Driving License"
-                                     type="text">
+                              <input class="form-control" id="txtDrivingLicense" placeholder="Driving License" type="text" name="drivingLicense">
                             </div>
 
 
@@ -168,7 +164,7 @@
                               <label class="form-label" for="txtNicNum">NIC Number</label>
                               <input class="form-control" id="txtNicNum"
                                      placeholder="NIC"
-                                     type="text">
+                                     type="text" name="driverNic">
                             </div>
 
 
@@ -177,7 +173,7 @@
                               <label class="form-label" for="txtPassword">Password</label>
                               <input class="form-control" id="txtPassword"
                                      placeholder="Password"
-                                     type="password">
+                                     type="password" name="driverPassword">
                             </div>
 
 
@@ -227,5 +223,33 @@
 
   </main>
 </div>
+
+
+<script src="../../boostrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../JQuery/jquery-3.6.1.min.js"></script>
+<script>
+
+  $("#btnSaveDriver").click(function (){
+
+    let formData = $("#driverForm").serialize();
+
+    $.ajax({
+      url:"http://localhost:8080/Easy_Car_Rental_war/driver",
+      method:"post",
+      data:formData,
+      dataType:"json",
+      success:function (resp){
+        alert(resp.message);
+      },error:function (error){
+        alert(JSON.parse(error.responseText).message);
+      }
+
+    });
+  });
+
+
+
+</script>
+
 </body>
 </html>
