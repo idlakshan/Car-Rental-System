@@ -1,5 +1,6 @@
 package lk.ijse.spring.entity;
 
+import lk.ijse.spring.embeded.Name;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,12 +17,11 @@ import javax.persistence.Id;
 public class Driver {
     @Id
     private String driverId;
-    private String driverFirstName;
-    private String driverLastName;
+    private Name driverName;
     private String driverContactNum;
     private String driverEmail;
     private String driverAddress;
-    private String drivingLicense;
+    private String driverLicense;
     private String driverNic;
     private String driverPassword;
 }
