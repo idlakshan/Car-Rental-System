@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cars</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <link rel="stylesheet" href="../admin/css/cars.css">
+  <link rel="stylesheet" href="../../boostrap/css/bootstrap.min.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+</head>
+<body>
+<input type="checkbox" id="menu-toggle">
+<div class="sidebar">
+  <div class="side-header">
+    <h3>Car<span>Rental</span></h3>
+  </div>
+
+  <div class="side-content">
+    <div class="profile">
+      <div class="profile-img bg-img" style="background-image: url(img/me.jpg)"></div>
+      <h4>Dimuthu lakshan</h4>
+      <small>Administrator</small>
+    </div>
+
+    <div class="side-menu">
+      <ul>
+        <li>
+          <a href="AdminDashboard.html" >
+            <span class="las la-home"></span>
+            <small>Dashboard</small>
+          </a>
+        </li>
+        <li>
+          <a href="AdminCars.html" class="active">
+            <span class="bx bx-car"></span>
+            <small>Car</small>
+          </a>
+        </li>
+        <li>
+          <a href="AdminUser.html">
+            <span class="bx bx-group"></span>
+            <small>User</small>
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <span class="bx bx-male"></span>
+            <small>Driver</small>
+          </a>
+        </li>
+
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+  <header>
+    <div class="header-content">
+      <label for="menu-toggle">
+        <span class="las la-bars"></span>
+      </label>
+
+      <div class="header-menu">
+
+        <div class="notify-icon">
+          <span class="las la-envelope"></span>
+          <span class="notify">4</span>
+        </div>
+
+        <div class="notify-icon">
+          <span class="las la-bell"></span>
+          <span class="notify">3</span>
+        </div>
+
+        <div class="user">
+          <div class="bg-img" style="background-image: url(img/me.jpg)"></div>
+
+          <span class="las la-power-off"></span>
+          <span>Logout</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+ <main>
+   <div class="page-header">
+     <h1>Dashboard</h1>
+     <small>Add Car / Dashboard</small>
+   </div>
+
+   <div id="carManage">
+     <form action="" class="container-fluid" style="margin-top: 20px" id="carForm">
+       <div class="row mb-3 justify-content-center">
+         <div class="form-group col-md-2">
+           <label class="col-form-label col-form-label-sm">Register No</label>
+           <input class="form-control form-control-sm" id="txtVehicleRegNo" name="vehicleRegNo" type="text">
+           <small class="form-text text-muted">Enter Register No</small>
+         </div>
+         <div class="form-group col-md-2">
+           <label class="col-form-label col-form-label-sm">Brand</label>
+           <input class="form-control form-control-sm" id="txtVehicleBrand" name="vehicleBrand" type="text">
+         </div>
+         <div class="form-group col-md-2">
+           <label class="col-form-label col-form-label-sm">Type Select</label>
+           <select class="form-control form-control-sm" id="cmbVehicleType" name="vehicleType">
+             <option selected>Select Type</option>
+             <option value="Luxury">Luxury</option>
+             <option value="Premium">Premium</option>
+           </select>
+         </div>
+         <div class="form-group col-md-2">
+           <label class="col-form-label col-form-label-sm">No Of Passengers</label>
+           <input class="form-control form-control-sm" id="txtVehiclePassengers" name="vehiclePassengers" type="text">
+         </div>
+         <div class=" form-group col-md-3 custom-file" style="margin-top: 30px;">
+           <input class="custom-file-input form-control form-control-sm" id="txtVehicleImg" name="vehicleImg"
+                  type="file">
+           <label class="custom-file-label col-form-label col-form-label-sm" for="txtVehicleImg">Choose
+             Image</label>
+         </div>
+       </div>
+       <div class="row mb-5 justify-content-center">
+         <div class="form-group col-md-2">
+           <label class="col-form-label col-form-label-sm">Transmission Type</label>
+           <select class="form-control form-control-sm" id="cmbVehicleTransmissionType" name="vehicleTransmissionType">
+             <option selected>Select Transmission Type</option>
+             <option>Auto</option>
+             <option>Manual</option>
+           </select>
+         </div>
+         <div class="form-group col-md-2">
+           <label class="col-form-label col-form-label-sm">Fuel Type</label>
+           <select class="form-control form-control-sm" id="cmbVehicleFuelType" name="vehicleFuelType">
+             <option selected>Select Fuel Type</option>
+             <option>Petrol</option>
+             <option>Diesel</option>
+           </select>
+         </div>
+         <div class="form-group col-md-2">
+           <label class="col-form-label col-form-label-sm">Free Mileage</label>
+           <input class="form-control form-control-sm" id="txtMileage" name="mileage" type="text">
+         </div>
+         <div class="form-group col-md-2">
+           <label class="col-form-label col-form-label-sm">Price per Extra KM</label>
+           <input class="form-control form-control-sm" id="txtPricePerExtraKm" name="pricePerExtraKm" type="text">
+         </div>
+       </div>
+
+       <div class="row mb-5 justify-content-center">
+         <div class="form-group col-md-2">
+           <label class="col-form-label col-form-label-sm">Daily Rate</label>
+           <input class="form-control form-control-sm" id="txtDailyRate" name="dailyRate" type="text">
+         </div>
+         <div class="form-group col-md-2">
+           <label class="col-form-label col-form-label-sm">Free KM for a day</label>
+           <input class="form-control form-control-sm" id="txtFreeKmForDay" name="freeKmForDay" type="text">
+         </div>
+         <div class="form-group col-md-2">
+           <label class="col-form-label col-form-label-sm">Monthly Rate</label>
+           <input class="form-control form-control-sm" id="txtMonthlyRate" name="monthlyRate" type="text">
+         </div>
+         <div class="form-group col-md-2">
+           <label class="col-form-label col-form-label-sm">Free KM for a month</label>
+           <input class="form-control form-control-sm" id="txtFreeKmForMonth" name="freeKmForMonth" type="text">
+         </div>
+
+         <div class="form-group col-md-3" style="margin-top: 30px;">
+           <button class="btn btn-outline-dark btn-sm" id="btnAddCar" type="button">Add Car</button>
+           <button class="btn btn-outline-warning btn-sm" id="btnUpdateCar" type="button">Update Car</button>
+           <button class="btn btn-outline-danger btn-sm" id="btnDeleteCar" type="button">Delete Car</button>
+         </div>
+       </div>
+     </form>
+
+     <div class=" justify-content-center">
+       <table class="table table-striped table-hover table-sm" style="margin-top: 5px;margin-bottom: 10px">
+         <thead>
+         <tr>
+           <th scope="col">Reg No</th>
+           <th scope="col">Brand</th>
+           <th scope="col">Type</th>
+           <th scope="col">Passengers</th>
+           <th scope="col">Transmission</th>
+           <th scope="col">Fuel</th>
+           <th scope="col">Mileage</th>
+           <th scope="col">Per extra KM</th>
+           <th scope="col">Daily.R</th>
+           <th scope="col">Free KM.Day</th>
+           <th scope="col">Monthly.R</th>
+           <th scope="col">Free KM.Month</th>
+
+         </tr>
+         </thead>
+         <tbody id="tblCars">
+
+         </tbody>
+       </table>
+     </div>
+   </div>
+
+
+
+
+ </main>
+</div>
+
+
+
+<script src="../../boostrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../JQuery/jquery-3.6.1.min.js"></script>
+<script>
+
+</script>
+</body>
+</html>

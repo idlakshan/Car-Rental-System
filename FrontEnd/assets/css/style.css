@@ -2,7 +2,7 @@
 
 
 :root{
-    --main-color:#d90429;
+    --main-color:#f25656;
     --text-color:#020102;
     --bg-color:#fff;
 }
@@ -142,7 +142,7 @@ header{
     font-weight: 400;
 }
 .btn:hover{
-    background: #fd052f;
+    background: #f25656;
 }
 
 .btnLogin-popup{
@@ -156,7 +156,7 @@ header{
     transition: .5s;
 }
 .btnLogin-popup:hover{
-    background: #fd052f;
+    background: #f25656;
     border: white;
     color: white;
 }
