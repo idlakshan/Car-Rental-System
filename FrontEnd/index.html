@@ -42,28 +42,28 @@
         <div class="form-box login" id="login-context">
             <h2>Login</h2>
 
-            <form action="#">
+            <form action="#" id="userLoginForm">
                 <div class="input-box">
                     <span class="icon"></span>
                     <select name="users" id="users" >
                         <option selected>Select Role</option>
                         <option value="admin">Admin</option>
                         <option value="driver">Driver</option>
-                        <option value="guest">Guest</option>
+                        <option value="guest">User</option>
                     </select>
                 </div>
 
                <div class="input-box">
                    <span class="icon"><ion-icon name="mail"></ion-icon></span>
-                   <input type="email" required>
+                   <input type="email" required name="userEmail" id="txtUserEmail">
                    <label>Email</label>
                </div>
                 <div class="input-box">
                     <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
-                    <input type="password" required>
+                    <input type="password" required name="userPassword" id="txtUserPassword">
                     <label>Password</label>
                 </div>
-                <button type="submit" class="btn-login">Login</button>
+                <button type="button" id="btnLogin" class="btn-login">Login</button>
                 <div class="login-register">
                     <p>Don't have an account ? <a href="#" class="register-link">Register</a></p>
                 </div>
@@ -73,56 +73,57 @@
 
         <div class="form-box register" id="register">
             <h2>Registration</h2>
-            <form action="#">
+            <form action="#" id="userRegistrationForm">
+
                 <div class="input-box">
                     <span class="icon"><ion-icon name="card"></ion-icon></span>
-                    <input type="text" required>
+                    <input type="text" required name="userRegIdNo" id="txtUserRegIdNo">
                     <label>Identity Card No :</label>
                 </div>
 
                 <div class="input-box">
                     <span class="icon"></span>
-                    <input placeholder="Identity Copy : " type="file" required>
+                    <input placeholder="Identity Copy : " type="file" required name="userRegIdCopy" id="txtUserRegIdCopy">
                 </div>
 
                 <div class="input-box">
                     <span class="icon"><ion-icon name="speedometer"></ion-icon></span>
-                    <input type="text" required>
+                    <input type="text" required name="userRegLicenseNo" id="txtUserRegLicenseNo">
                     <label>License No : </label>
                 </div>
 
                 <div class="input-box">
                     <span class="icon"></span>
-                    <input placeholder="License Copy : " type="file" required>
+                    <input placeholder="License Copy : " type="file" required name="userRegLicenseCopy" id="txtUserRegLicenseCopy">
                 </div>
 
 
                 <div class="input-box">
                     <span class="icon"><ion-icon name="person"></ion-icon></span>
-                    <input type="text" required>
+                    <input type="text" required name="userRegName" id="txtUserRegName">
                     <label>User Name : </label>
                 </div>
 
                 <div class="input-box">
                     <span class="icon"><ion-icon name="call"></ion-icon></span>
-                    <input type="text" required>
+                    <input type="text" required name="userRegContact" id="txtUserRegContact">
                     <label>Contact No : </label>
                 </div>
 
 
                 <div class="input-box">
                     <span class="icon"><ion-icon name="mail"></ion-icon></span>
-                    <input type="email" required>
+                    <input type="email" required name="userRegEmail" id="txtUserRegEmail">
                     <label>Email : </label>
                 </div>
 
 
                 <div class="input-box">
                     <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
-                    <input type="password" required>
+                    <input type="password" required name="userRegPassword" id="txtUserRegPassword">
                     <label>Password</label>
                 </div>
-                <button type="submit" class="btn-login">Register</button>
+                <button type="button" id="btnUserRegister" class="btn-login">Register</button>
                 <div class="login-register">
                     <p>Already have an account <a href="#" class="login-link">Login</a></p>
                 </div>
@@ -444,8 +445,36 @@
 
 
 <script src="assets/boostrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/JQuery/jquery-3.6.1.min.js"></script>
 <script src="assets/js/script.js"></script>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script>
+
+    $("#btnLogin").click(function (){
+           let cmbRole = $("#users option:selected").text();
+           let adminEmail = $("#txtUserEmail").val();
+           let adminPassword = $("#txtUserPassword").val();
+
+           if (cmbRole=="Admin" && adminEmail !=="" && adminPassword !==""){
+
+               $.ajax({
+                   url:"http://localhost:8080/Easy_Car_Rental_war/admin/getAdmin/"+adminEmail+"/"+adminPassword,
+                   dataType:"json",
+                   success:function (resp){
+                       alert(resp.message);
+                       window.location.href="assets/pages/admin/AdminDashboard.html";
+                   },
+                   error:function (error){
+                       alert(JSON.parse(error.responseText).message);
+                   }
+               });
+
+           }
+
+
+    });
+
+</script>
 </body>
 </html>

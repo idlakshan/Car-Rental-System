@@ -38,4 +38,14 @@ public class AdminServiceImpl implements AdminService {
 
 
     }
+
+    @Override
+    public AdminDTO getAdminByEmailAndPassword(String email, String password) {
+        Admin admin = adminRepo.findAdminByAdminEmailAndAdminPassword(email, password);
+
+        if (admin==null){
+            throw new RuntimeException("Sorry! Admin Not Available..");
+        }
+        return mapper.map(admin,AdminDTO.class);
+    }
 }

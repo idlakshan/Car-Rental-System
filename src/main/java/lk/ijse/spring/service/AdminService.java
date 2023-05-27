@@ -9,4 +9,6 @@ public interface AdminService {
     public ArrayList<AdminDTO> getAllAdmin();
 
     public void updateAdmin(AdminDTO adminDTO);
+
+    public AdminDTO getAdminByEmailAndPassword(String email,String password);
 }

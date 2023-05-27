@@ -28,4 +28,11 @@ public class AdminController {
         return new ResponseUtil("200","Admin Successfully Updated..!",null);
     }
 
+    @GetMapping(path = "/getAdmin/{adminEmail}/{adminPassword}")
+    public ResponseUtil getAdminByEmailAndPassword(@PathVariable String adminEmail,@PathVariable String adminPassword){
+        //System.out.println("Hii " +adminEmail+" " +adminPassword);
+        AdminDTO admin = adminService.getAdminByEmailAndPassword(adminEmail, adminPassword);
+        return new ResponseUtil("200","Login successfully",admin);
+    }
+
 }
