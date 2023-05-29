@@ -55,12 +55,12 @@
 
                <div class="input-box">
                    <span class="icon"><ion-icon name="mail"></ion-icon></span>
-                   <input type="email" required name="userEmail" id="txtUserEmail">
+                   <input type="email"  name="userEmail" id="txtUserEmail">
                    <label>Email</label>
                </div>
                 <div class="input-box">
                     <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
-                    <input type="password" required name="userPassword" id="txtUserPassword">
+                    <input type="password"  name="userPassword" id="txtUserPassword">
                     <label>Password</label>
                 </div>
                 <button type="button" id="btnLogin" class="btn-login">Login</button>
@@ -72,55 +72,56 @@
 
 
         <div class="form-box register" id="register">
+            <h6 id="uId">userId</h6>
             <h2>Registration</h2>
             <form action="#" id="userRegistrationForm">
 
                 <div class="input-box">
                     <span class="icon"><ion-icon name="card"></ion-icon></span>
-                    <input type="text" required name="userRegIdNo" id="txtUserRegIdNo">
+                    <input type="text"  name="userRegIdNo" id="txtUserRegIdNo">
                     <label>Identity Card No :</label>
                 </div>
 
                 <div class="input-box">
                     <span class="icon"></span>
-                    <input placeholder="Identity Copy : " type="file" required name="userRegIdCopy" id="txtUserRegIdCopy">
+                    <input placeholder="Identity Copy : " type="file"  name="userRegIdCopy" id="txtUserRegIdCopy">
                 </div>
 
                 <div class="input-box">
                     <span class="icon"><ion-icon name="speedometer"></ion-icon></span>
-                    <input type="text" required name="userRegLicenseNo" id="txtUserRegLicenseNo">
+                    <input type="text"  name="userRegLicenseNo" id="txtUserRegLicenseNo">
                     <label>License No : </label>
                 </div>
 
                 <div class="input-box">
                     <span class="icon"></span>
-                    <input placeholder="License Copy : " type="file" required name="userRegLicenseCopy" id="txtUserRegLicenseCopy">
+                    <input placeholder="License Copy : " type="file"  name="userRegLicenseCopy" id="txtUserRegLicenseCopy">
                 </div>
 
 
                 <div class="input-box">
                     <span class="icon"><ion-icon name="person"></ion-icon></span>
-                    <input type="text" required name="userRegName" id="txtUserRegName">
+                    <input type="text"  name="userRegName" id="txtUserRegName">
                     <label>User Name : </label>
                 </div>
 
                 <div class="input-box">
                     <span class="icon"><ion-icon name="call"></ion-icon></span>
-                    <input type="text" required name="userRegContact" id="txtUserRegContact">
+                    <input type="text"  name="userRegContact" id="txtUserRegContact">
                     <label>Contact No : </label>
                 </div>
 
 
                 <div class="input-box">
                     <span class="icon"><ion-icon name="mail"></ion-icon></span>
-                    <input type="email" required name="userRegEmail" id="txtUserRegEmail">
+                    <input type="email"  name="userRegEmail" id="txtUserRegEmail">
                     <label>Email : </label>
                 </div>
 
 
                 <div class="input-box">
                     <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
-                    <input type="password" required name="userRegPassword" id="txtUserRegPassword">
+                    <input type="password"  name="userRegPassword" id="txtUserRegPassword">
                     <label>Password</label>
                 </div>
                 <button type="button" id="btnUserRegister" class="btn-login">Register</button>
@@ -474,6 +475,125 @@
 
 
     });
+
+    let newUserId;
+
+    function createNewUserId() {
+        $.ajax({
+            url: "http://localhost:8080/Easy_Car_Rental_war/user/userId",
+            dataType: "json",
+            async: false,
+            success: function (resp) {
+                let lastUserId = resp.data;
+
+                let tempId = parseInt(lastUserId.split("-")[1]);
+                tempId = tempId + 1;
+
+                if (tempId < 9) {
+
+                    newUserId = "U-00" + tempId;
+
+                } else if (tempId < 99) {
+                    newUserId = "U-0" + tempId;
+
+                } else {
+                    newUserId = "U-" + tempId;
+
+                }
+            },
+            error: function (error) {
+                alert("Error When Getting Last User ID From Back End!!");
+            }
+        });
+
+    }
+
+
+
+    $("#btnUserRegister").click(function (){
+        createNewUserId();
+        if (typeof newUserId === "undefined") {
+            alert("UserId Not Defined!")
+        } else {
+            /*console.log(newCustomerId);*/
+            uploadUserImagesAndSaveDetails();
+        }
+
+    });
+
+    function uploadUserImagesAndSaveDetails() {
+
+        let userName = $("#txtUserRegName").val();
+
+        let file = $("#txtUserRegIdCopy")[0].files[0];
+        let fileName = newUserId + "_idImage_" +  $("#txtUserRegIdCopy")[0].files[0].name;
+
+        var imgLicenseObject = $("#txtUserRegLicenseCopy")[0].files[0];
+        var imgLicenseName = newUserId + "_licenseImage_" + $("#txtUserRegLicenseCopy")[0].files[0].name;
+
+        var data = new FormData();
+        data.append("userRegIdCopy",file, fileName);
+        data.append("userRegLicenseCopy", imgLicenseObject, imgLicenseName);
+
+        $.ajax({
+            url: "http://localhost:8080/Easy_Car_Rental_war/user/image/"+newUserId+"/"+userName,
+            method: 'post',
+            async: true,
+            contentType: false,
+            processData: false,
+            data: data,
+            success: function (res) {
+                alert("Successfully Uploaded");
+                saveUser();
+
+
+            },
+            error: function (error) {
+                let cause = JSON.parse(error.responseText).message;
+                alert(cause);
+            }
+        });
+    }
+
+    function saveUser() {
+        let userId = newUserId;
+        let id = $("#txtUserRegIdNo").val();
+        let license = $("#txtUserRegLicenseNo").val();
+        let userName = $("#txtUserRegName").val();
+        let contact = $("#txtUserRegContact").val();
+        let email = $("#txtUserRegEmail").val();
+        let password = $("#txtUserRegPassword").val();
+        console.log(userId);
+
+        var user = {
+            userId:userId,
+            idNo:id,
+            idPath:"",
+            licenseNo: license,
+            licensePath: "",
+            userName: userName,
+            contact: contact,
+            email: email,
+            password: password,
+        }
+
+        $.ajax({
+            url: "http://localhost:8080/Easy_Car_Rental_war/user",
+            method: "post",
+            contentType: "application/json",
+            data: JSON.stringify(user),
+            dataType: 'json',
+            success: function (res) {
+                alert(res.message);
+            },
+            error: function (error) {
+                let cause = JSON.parse(error.responseText).message;
+                alert(cause);
+            }
+        });
+
+    }
+
 
 </script>
 </body>
