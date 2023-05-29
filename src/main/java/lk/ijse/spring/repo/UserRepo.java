@@ -15,4 +15,5 @@ public interface UserRepo extends JpaRepository<User,String> {
     String getLastId();
 
     User findUserByIdNo(String idNo);
+
 }

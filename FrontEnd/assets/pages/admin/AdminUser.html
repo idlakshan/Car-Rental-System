@@ -177,26 +177,30 @@
 
   $("#btnSearchUser").click(function (){
 
+
     let idNo = $("#txtUserSearch").val();
 
-    console.log("id "+idNo);
-    $("#tblUser").empty();
+    if (idNo==""){
+      alert("Empty filed, please enter the Identity No");
+      return;
+    }else
+      console.log("id "+idNo);
+      $("#tblUser").empty();
 
-    $.ajax({
-      url:"http://localhost:8080/Easy_Car_Rental_war/user/getUser/"+idNo,
-      method:"get",
-      dataType:"json",
-      success:function (resp){
-        $("#tblUser").empty();
-        let user = resp.data;
+      $.ajax({
+        url:"http://localhost:8080/Easy_Car_Rental_war/user/getUser/"+idNo,
+        method:"get",
+        dataType:"json",
+        success:function (resp){
+          $("#tblUser").empty();
+          let user = resp.data;
           let row = `<tr><td>${user.userId}</td><td>${user.idNo}</td><td>${user.licenseNo}</td><td>${user.userName}</td><td>${user.contact}</td><td> ${user.email}</td></tr>`;
           $("#tblUser").append(row);
 
-      },error(error){
-        alert(JSON.parse(error.responseText).message);
-      }
-    });
-
+        },error(error){
+          alert(JSON.parse(error.responseText).message);
+        }
+      });
   });
 
   $("#btnClearUser").click(function (){

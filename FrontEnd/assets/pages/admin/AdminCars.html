@@ -143,12 +143,8 @@
            </select>
          </div>
          <div class="form-group col-md-2">
-           <label class="col-form-label col-form-label-sm">Free Mileage</label>
-           <input class="form-control form-control-sm" id="txtMileage" name="mileage" type="text">
-         </div>
-         <div class="form-group col-md-2">
-           <label class="col-form-label col-form-label-sm">Price per Extra KM</label>
-           <input class="form-control form-control-sm" id="txtPricePerExtraKm" name="pricePerExtraKm" type="text">
+           <label class="col-form-label col-form-label-sm">Waiver Amount</label>
+           <input class="form-control form-control-sm" id="txtWaiver" name="waiver" type="text">
          </div>
        </div>
 
@@ -188,8 +184,7 @@
            <th scope="col">Passengers</th>
            <th scope="col">Transmission</th>
            <th scope="col">Fuel</th>
-           <th scope="col">Mileage</th>
-           <th scope="col">Per extra KM</th>
+           <th scope="col">Waiver</th>
            <th scope="col">Daily.R</th>
            <th scope="col">Free KM.Day</th>
            <th scope="col">Monthly.R</th>
@@ -215,6 +210,144 @@
 <script src="../../boostrap/js/bootstrap.bundle.min.js"></script>
 <script src="../../JQuery/jquery-3.6.1.min.js"></script>
 <script>
+
+  createNewRegNo();
+
+  var regNo;
+
+  function cleartextFields(){
+    $("#txtVehicleRegNo").val("");
+    $("#txtVehicleBrand").val("");
+   $("#cmbVehicleType").val("Type");
+   $("#txtVehiclePassengers").val("");
+   $("#cmbVehicleTransmissionType").val("Transmission Type");
+   $("#cmbVehicleFuelType").val("Fuel Type");
+   $("#txtWaiver").val("");
+   $("#txtDailyRate").val("");
+    $("#txtFreeKmForDay").val("");
+    $("#txtMonthlyRate").val("");
+    $("#txtFreeKmForMonth").val("");
+    $("#txtVehicleImg").val("");
+
+
+  }
+
+  function createNewRegNo() {
+    $.ajax({
+      url: "http://localhost:8080/Easy_Car_Rental_war/car/regNo",
+      dataType: "json",
+      async: false,
+      success: function (resp) {
+        let lastUserId = resp.data;
+
+        let tempId = parseInt(lastUserId.split("-")[1]);
+        tempId = tempId + 1;
+
+        if (tempId < 9) {
+
+          regNo = "C-00" + tempId;
+
+        } else if (tempId < 99) {
+          regNo = "C-0" + tempId;
+
+        } else {
+          regNo = "C-" + tempId;
+
+        }
+        $("#txtVehicleRegNo").val(regNo);
+      },
+      error: function (error) {
+        alert("Error When Getting Last User ID From Back End!!");
+      }
+    });
+
+  }
+
+
+
+  $("#btnAddCar").click(function (){
+      uploadCarImgAndSaveDetails();
+
+  });
+
+  function uploadCarImgAndSaveDetails(){
+
+
+    let file = $("#txtVehicleImg")[0].files[0];
+    let fileName = regNo + "_CarImage_" +  $("#txtVehicleImg")[0].files[0].name;
+
+    var data = new FormData();
+    data.append("vehicleImg",file, fileName);
+
+    $.ajax({
+      url: "http://localhost:8080/Easy_Car_Rental_war/car/image",
+      method: 'post',
+      async: true,
+      contentType: false,
+      processData: false,
+      data: data,
+      success: function (res) {
+        alert("Successfully Uploaded");
+        saveCar();
+
+      },
+      error: function (error) {
+        let cause = JSON.parse(error.responseText).message;
+        alert(cause);
+      }
+    });
+
+  }
+
+  function saveCar(){
+
+    let regId = $("#txtVehicleRegNo").val();
+    let brand = $("#txtVehicleBrand").val();
+    let type = $("#cmbVehicleType").val();
+    let passenger = $("#txtVehiclePassengers").val();
+    let transmission = $("#cmbVehicleTransmissionType").val();
+    let fuel = $("#cmbVehicleFuelType").val();
+    let waiver = $("#txtWaiver").val();
+    let dayR = $("#txtDailyRate").val();
+    let dayKm = $("#txtFreeKmForDay").val();
+    let monthR = $("#txtMonthlyRate").val();
+    let monthKm = $("#txtFreeKmForMonth").val();
+
+    var car = {
+      regId:regId,
+      brand:brand,
+      type:type,
+      passengers: passenger,
+      carPhoto: "",
+      transmission: transmission,
+      fuel: fuel,
+      waiver: waiver,
+      dayRate: dayR,
+      kmDay: dayKm,
+      monthRate: monthR,
+      kmMonth: monthKm,
+    }
+
+    $.ajax({
+      url: "http://localhost:8080/Easy_Car_Rental_war/car",
+      method: "post",
+      contentType: "application/json",
+      data: JSON.stringify(car),
+      dataType: 'json',
+      success: function (res) {
+        alert(res.message);
+        cleartextFields();
+        createNewRegNo();
+      },
+      error: function (error) {
+        let cause = JSON.parse(error.responseText).message;
+        alert(cause);
+      }
+    });
+
+  }
+
+
 
 </script>
 </body>
