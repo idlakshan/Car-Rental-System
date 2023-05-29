@@ -2,6 +2,8 @@ package lk.ijse.spring.service;
 
 import lk.ijse.spring.dto.CarDTO;
 
+import java.util.ArrayList;
+
 public interface CarService {
 
     void saveCar(CarDTO carDTO);
@@ -9,4 +11,7 @@ public interface CarService {
     String getRegNo();
 
     int getRowCount();
+
+    ArrayList<CarDTO> getAllCars();
+
 }

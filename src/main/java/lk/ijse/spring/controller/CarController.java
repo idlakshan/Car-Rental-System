@@ -1,6 +1,7 @@
 package lk.ijse.spring.controller;
 
 import lk.ijse.spring.dto.CarDTO;
+import lk.ijse.spring.dto.DriverDTO;
 import lk.ijse.spring.service.CarService;
 import lk.ijse.spring.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/car")
@@ -64,5 +66,11 @@ public class CarController {
         carDTO.setCarPhoto(carImageUploadPath);
         carService.saveCar(carDTO);
         return new ResponseUtil("200","Saved successfully",null);
+    }
+
+    @GetMapping
+    public ResponseUtil getAllCars(){
+        ArrayList<CarDTO> allCars = carService.getAllCars();
+        return new ResponseUtil("200","Success",allCars);
     }
 }

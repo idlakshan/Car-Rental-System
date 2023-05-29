@@ -212,6 +212,7 @@
 <script>
 
   createNewRegNo();
+  loadAllCar();
 
   var regNo;
 
@@ -338,6 +339,7 @@
         alert(res.message);
         cleartextFields();
         createNewRegNo();
+        loadAllCar();
       },
       error: function (error) {
         let cause = JSON.parse(error.responseText).message;
@@ -347,6 +349,55 @@
 
   }
 
+  function loadAllCar(){
+    $("#tblCars").empty();
+
+    $.ajax({
+      url:"http://localhost:8080/Easy_Car_Rental_war/car",
+      method: "get",
+      dataType:"json",
+      success:function (resp){
+        for (let car of resp.data) {
+          // console.log(resp.data);
+          let row = `<tr><td>${car.regId}</td><td>${car.brand}</td><td>${car.type}</td><td>${car.passengers}</td><td>${car.transmission}</td><td>${car.fuel} </td><td> ${car.waiver}</td><td>${car.dayRate}</td><td>${car.kmDay} </td><td>${car.monthRate} </td><td>${car.kmMonth} </td></tr>`;
+          $("#tblCars").append(row);
+        }
+
+        bindRowAdminClickEvent();
+      }
+
+    });
+  }
+
+  function bindRowAdminClickEvent(){
+    $("#tblCars>tr").click(function (){
+      let regNo=$(this).children(":eq(0)").text();
+      let brand=$(this).children(":eq(1)").text();
+      let type=$(this).children(":eq(2)").text();
+      let passengers=$(this).children(":eq(3)").text();
+      let transmission=$(this).children(":eq(4)").text();
+      let fuel=$(this).children(":eq(5)").text();
+      let waiver=$(this).children(":eq(6)").text();
+      let dayR=$(this).children(":eq(7)").text();
+      let kmDay=$(this).children(":eq(8)").text();
+      let monthR=$(this).children(":eq(9)").text();
+      let kmMonth=$(this).children(":eq(10)").text();
+
+      $("#txtVehicleRegNo").val(regNo);
+      $("#txtVehicleBrand").val(brand);
+      $("#cmbVehicleType").val(type);
+      $("#txtVehiclePassengers").val(passengers);
+      $("#cmbVehicleTransmissionType").val(transmission);
+      $("#cmbVehicleFuelType").val(fuel);
+      $("#txtWaiver").val(waiver);
+      $("#txtDailyRate").val(dayR);
+      $("#txtFreeKmForDay").val(kmDay);
+      $("#txtMonthlyRate").val(monthR);
+      $("#txtFreeKmForMonth").val(kmMonth);
+
+
+    });
+  }
 
 
 </script>
