@@ -286,7 +286,7 @@ table tbody td {
     padding: 1rem 0;
     color: #444;
 }
-table tbody td:first-child {
+#tblUser td:first-child {
     padding-left: 1rem;
     color: var(--main-color);
     font-weight: 600;

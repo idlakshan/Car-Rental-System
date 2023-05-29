@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 @RestController
@@ -73,6 +74,12 @@ public class UserController {
         System.out.println("User is : " + dto.toString());
         userService.addUser(dto);
         return new ResponseUtil("200", dto.toString() + " : Added", null);
+    }
+
+    @GetMapping()
+    public ResponseUtil getAllUsers(){
+        ArrayList<UserDTO> allUsers = userService.getAllUsers();
+        return new ResponseUtil("200","success",allUsers);
     }
 
 }

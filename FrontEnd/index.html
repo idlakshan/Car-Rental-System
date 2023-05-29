@@ -472,9 +472,18 @@
                });
 
            }
-
-
     });
+
+    function clearTextFields() {
+        $("#txtUserRegIdNo").val("");
+        $("#txtUserRegIdCopy").val("");
+        $("#txtUserRegLicenseNo").val("");
+        $("#txtUserRegLicenseCopy").val("");
+        $("#txtUserRegName").val("");
+        $("#txtUserRegContact").val("");
+        $("#txtUserRegEmail").val("");
+        $("#txtUserRegPassword").val("");
+    }
 
     let newUserId;
 
@@ -585,6 +594,7 @@
             dataType: 'json',
             success: function (res) {
                 alert(res.message);
+                clearTextFields();
             },
             error: function (error) {
                 let cause = JSON.parse(error.responseText).message;

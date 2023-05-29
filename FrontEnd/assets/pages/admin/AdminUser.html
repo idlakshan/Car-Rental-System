@@ -127,12 +127,12 @@
           <table class="table table-striped">
             <thead>
             <tr>
+              <th scope="col">#UserId</th>
               <th scope="col">Identity No</th>
               <th scope="col">License No</th>
               <th scope="col">Name</th>
               <th scope="col">Contact</th>
               <th scope="col">E-Mail</th>
-              <th scope="col">Username</th>
             </tr>
             </thead>
             <tbody id="tblUser">
@@ -152,6 +152,29 @@
 <script src="../../boostrap/js/bootstrap.bundle.min.js"></script>
 <script src="../../JQuery/jquery-3.6.1.min.js"></script>
 <script>
+
+  getAllUsers();
+
+  function getAllUsers(){
+    $("#tblUser").empty();
+
+    $.ajax({
+      url:"http://localhost:8080/Easy_Car_Rental_war/user",
+      method:"get",
+      dataType:"json",
+      success:function (resp){
+        for (let user of resp.data) {
+          let row = `<tr><td>${user.userId}</td><td>${user.idNo}</td><td>${user.licenseNo}</td><td>${user.userName}</td><td>${user.contact}</td><td> ${user.email}</td></tr>`;
+          $("#tblUser").append(row);
+        }
+
+
+      },error(error){
+        alert(JSON.parse(error.responseText).message);
+      }
+    });
+
+  }
 
 </script>
 </body>
