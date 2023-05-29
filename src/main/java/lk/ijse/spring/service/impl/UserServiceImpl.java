@@ -27,6 +27,14 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
+    public UserDTO getUserById(String idNo) {
+        if (idNo==null){
+            throw new RuntimeException("Empty field,Please Enter Identity No");
+        }
+        return mapper.map(userRepo.findUserByIdNo(idNo), UserDTO.class);
+    }
+
+    @Override
     public void addUser(UserDTO dto) {
         if (userRepo.existsById(dto.getUserId())) {
             throw new RuntimeException("Customer " + dto.getUserId() + " Already Exists..!!");

@@ -5,6 +5,9 @@ import lk.ijse.spring.dto.UserDTO;
 import java.util.ArrayList;
 
 public interface UserService {
+
+     UserDTO getUserById(String idNo);
+
     void addUser(UserDTO dto);
 
     void isExistsUser(String id);
@@ -15,7 +18,7 @@ public interface UserService {
 
     String getLastUserId();
 
-    public ArrayList<UserDTO> getAllUsers();
+     ArrayList<UserDTO> getAllUsers();
 
 
 }

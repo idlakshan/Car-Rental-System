@@ -82,4 +82,13 @@ public class UserController {
         return new ResponseUtil("200","success",allUsers);
     }
 
+    @GetMapping(path = "/getUser/{idNo}")
+    public ResponseUtil getUserByIdNo(@PathVariable String idNo){
+        System.out.println(idNo);
+
+        UserDTO userById = userService.getUserById(idNo);
+
+        return new ResponseUtil("200","success",userById);
+    }
+
 }
