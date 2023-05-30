@@ -219,12 +219,12 @@
   function cleartextFields(){
     $("#txtVehicleRegNo").val("");
     $("#txtVehicleBrand").val("");
-   $("#cmbVehicleType").val("Type");
-   $("#txtVehiclePassengers").val("");
-   $("#cmbVehicleTransmissionType").val("Transmission Type");
-   $("#cmbVehicleFuelType").val("Fuel Type");
-   $("#txtWaiver").val("");
-   $("#txtDailyRate").val("");
+    $("#cmbVehicleType").val("Type");
+    $("#txtVehiclePassengers").val("");
+    $("#cmbVehicleTransmissionType").val("Transmission Type");
+    $("#cmbVehicleFuelType").val("Fuel Type");
+    $("#txtWaiver").val("");
+    $("#txtDailyRate").val("");
     $("#txtFreeKmForDay").val("");
     $("#txtMonthlyRate").val("");
     $("#txtFreeKmForMonth").val("");
@@ -304,24 +304,26 @@
 
     let regId = $("#txtVehicleRegNo").val();
     let brand = $("#txtVehicleBrand").val();
-    let type = $("#cmbVehicleType").val();
+    let carType = $("#cmbVehicleType").val();
     let passenger = $("#txtVehiclePassengers").val();
     let transmission = $("#cmbVehicleTransmissionType").val();
-    let fuel = $("#cmbVehicleFuelType").val();
+    let fuelType = $("#cmbVehicleFuelType").val();
     let waiver = $("#txtWaiver").val();
     let dayR = $("#txtDailyRate").val();
     let dayKm = $("#txtFreeKmForDay").val();
     let monthR = $("#txtMonthlyRate").val();
     let monthKm = $("#txtFreeKmForMonth").val();
 
+    console.log(fuelType);
+
     var car = {
       regId:regId,
       brand:brand,
-      type:type,
+      carType:carType,
       passengers: passenger,
       carPhoto: "",
       transmission: transmission,
-      fuel: fuel,
+      fuelType: fuelType,
       waiver: waiver,
       dayRate: dayR,
       kmDay: dayKm,
@@ -358,8 +360,8 @@
       dataType:"json",
       success:function (resp){
         for (let car of resp.data) {
-          // console.log(resp.data);
-          let row = `<tr><td>${car.regId}</td><td>${car.brand}</td><td>${car.type}</td><td>${car.passengers}</td><td>${car.transmission}</td><td>${car.fuel} </td><td> ${car.waiver}</td><td>${car.dayRate}</td><td>${car.kmDay} </td><td>${car.monthRate} </td><td>${car.kmMonth} </td></tr>`;
+           console.log(resp.data);
+          let row = `<tr><td>${car.regId}</td><td>${car.brand}</td><td>${car.carType}</td><td>${car.passengers}</td><td>${car.transmission}</td><td>${car.fuelType} </td><td> ${car.waiver}</td><td>${car.dayRate}</td><td>${car.kmDay} </td><td>${car.monthRate} </td><td>${car.kmMonth} </td></tr>`;
           $("#tblCars").append(row);
         }
 
@@ -373,23 +375,25 @@
     $("#tblCars>tr").click(function (){
       let regNo=$(this).children(":eq(0)").text();
       let brand=$(this).children(":eq(1)").text();
-      let type=$(this).children(":eq(2)").text();
+      let carType=$(this).children(":eq(2)").text();
       let passengers=$(this).children(":eq(3)").text();
       let transmission=$(this).children(":eq(4)").text();
-      let fuel=$(this).children(":eq(5)").text();
+      let fuelType=$(this).children(":eq(5)").text();
       let waiver=$(this).children(":eq(6)").text();
       let dayR=$(this).children(":eq(7)").text();
       let kmDay=$(this).children(":eq(8)").text();
       let monthR=$(this).children(":eq(9)").text();
       let kmMonth=$(this).children(":eq(10)").text();
 
+      console.log("fuel "+fuelType);
+
       $("#txtVehicleRegNo").val(regNo);
       $("#txtVehicleBrand").val(brand);
-      $("#cmbVehicleType").val(type);
+      $("#cmbVehicleType").val(carType);
       $("#txtVehiclePassengers").val(passengers);
       $("#cmbVehicleTransmissionType").val(transmission);
-      $("#cmbVehicleFuelType").val(fuel);
-      $("#txtWaiver").val(waiver);
+       $("#cmbVehicleFuelType").val(fuelType);
+       $("#txtWaiver").val(waiver);
       $("#txtDailyRate").val(dayR);
       $("#txtFreeKmForDay").val(kmDay);
       $("#txtMonthlyRate").val(monthR);
@@ -399,6 +403,71 @@
     });
   }
 
+  $("#btnUpdateCar").click(function (){
+
+    let regId = $("#txtVehicleRegNo").val();
+    let brand = $("#txtVehicleBrand").val();
+    let carType = $("#cmbVehicleType").val();
+    let passenger = $("#txtVehiclePassengers").val();
+    let transmission = $("#cmbVehicleTransmissionType").val();
+    let fuelType = $("#cmbVehicleFuelType").val();
+    let waiver = $("#txtWaiver").val();
+    let dayR = $("#txtDailyRate").val();
+    let dayKm = $("#txtFreeKmForDay").val();
+    let monthR = $("#txtMonthlyRate").val();
+    let monthKm = $("#txtFreeKmForMonth").val();
+
+    var car = {
+      regId:regId,
+      brand:brand,
+      carType:carType,
+      passengers: passenger,
+      carPhoto: "",
+      transmission: transmission,
+      fuelType: fuelType,
+      waiver: waiver,
+      dayRate: dayR,
+      kmDay: dayKm,
+      monthRate: monthR,
+      kmMonth: monthKm,
+    }
+
+
+    $.ajax({
+      url:"http://localhost:8080/Easy_Car_Rental_war/car",
+      method:"put",
+      contentType:"application/json",
+      data:JSON.stringify(car),
+      dataType:"json",
+      success:function (res){
+        alert(res.message)
+        loadAllCar();
+      },
+      error:function (error){
+        alert(JSON.parse(error.responseText).message);
+      }
+
+    });
+
+  });
+  $("#btnDeleteCar").click(function () {
+    let regId = $("#txtVehicleRegNo").val();
+
+    $.ajax({
+      url:"http://localhost:8080/Easy_Car_Rental_war/car?regId=" + regId,
+      method: "delete",
+      dataType: "json",
+      success: function (resp) {
+        alert(resp.message);
+       loadAllCar();
+       cleartextFields()
+      },
+      error:function (error) {
+        alert(JSON.parse(error.responseText).message);
+      }
+
+    });
+  });
 
 </script>
 </body>

@@ -48,4 +48,32 @@ public class CarServiceImpl implements CarService {
         List<Car> all = carRepo.findAll();
         return mapper.map(all,new TypeToken<ArrayList<CarDTO>>(){}.getType());
     }
+
+    @Override
+    public void updateCarWithoutImg(CarDTO carDTO) {
+        Car car = mapper.map(carDTO, Car.class);
+
+        if (!carRepo.existsById(car.getRegId())){
+            throw new RuntimeException("Car " + car.getRegId() + " Not Available to Update..!");
+        }
+        carRepo.updateCarWithoutImg(car.getBrand(),car.getCarType(),car.getPassengers(),car.getTransmission(), car.getFuelType(),
+                car.getWaiver(),car.getDayRate(),car.getKmDay(),car.getMonthRate(),car.getKmMonth(),car.getRegId());
+    }
+
+    @Override
+    public CarDTO getCarById(String regId) {
+        if (!carRepo.existsById(regId)) {
+            throw new RuntimeException("No " + regId + " Car..!!");
+        }
+
+        return mapper.map(carRepo.findCarByRegId(regId), CarDTO.class);
+    }
+
+    @Override
+    public void deleteCar(String regId) {
+        if (!carRepo.existsById(regId)) {
+            throw new RuntimeException("Car " + regId + " Not Available to Delete..!");
+        }
+        carRepo.deleteById(regId);
+    }
 }

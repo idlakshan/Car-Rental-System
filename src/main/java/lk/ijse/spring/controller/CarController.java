@@ -1,7 +1,6 @@
 package lk.ijse.spring.controller;
 
 import lk.ijse.spring.dto.CarDTO;
-import lk.ijse.spring.dto.DriverDTO;
 import lk.ijse.spring.service.CarService;
 import lk.ijse.spring.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,5 +71,43 @@ public class CarController {
     public ResponseUtil getAllCars(){
         ArrayList<CarDTO> allCars = carService.getAllCars();
         return new ResponseUtil("200","Success",allCars);
+    }
+
+    @PutMapping
+    public ResponseUtil updateCarWithoutImg(@RequestBody CarDTO carDTO){
+        carService.updateCarWithoutImg(carDTO);
+        return new ResponseUtil("200", "Successfully Updated..!", null);
+    }
+
+    public boolean deleteUploadedImg(String carImg) {
+        try {
+
+            File file = new File(carImg);
+
+            if (file.delete()) {
+                System.out.println("Image is deleted.");
+                return true;
+            } else {
+                System.out.println("Delete operation is failed.");
+                return false;
+            }
+        } catch (Exception e) {
+            System.out.println("Failed to Delete images !!");
+            return false;
+        }
+    }
+
+
+    @DeleteMapping(params = "regId")
+    public ResponseUtil deleteCar(String regId) {
+        CarDTO carDTO=carService.getCarById(regId);
+        carService.deleteCar(regId);
+        boolean isDeletedImage = deleteUploadedImg(carDTO.getCarPhoto());
+        if (isDeletedImage) {
+            return new ResponseUtil("200", regId + "Car is Deleted...!", null);
+        } else {
+            return new ResponseUtil("500", "Customer Details Are Deleted, But Images Are Not Deleted!!!", null);
+        }
+
     }
 }

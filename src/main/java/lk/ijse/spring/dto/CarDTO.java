@@ -14,11 +14,11 @@ public class CarDTO {
 
     String regId;
     String brand;
-    String type;
+    String carType;
     String passengers;
     String carPhoto;
     String transmission;
-    String fuel;
+    String fuelType;
     String waiver;
     String dayRate;
     String kmDay;

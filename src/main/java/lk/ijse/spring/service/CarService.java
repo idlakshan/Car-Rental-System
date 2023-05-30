@@ -14,4 +14,11 @@ public interface CarService {
 
     ArrayList<CarDTO> getAllCars();
 
+    void updateCarWithoutImg(CarDTO carDTO);
+
+    CarDTO getCarById(String regId);
+
+
+    void deleteCar(String regId);
+
 }
