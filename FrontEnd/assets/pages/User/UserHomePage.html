@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Home-Page</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <link rel="stylesheet" href="../admin/css/dashboard.css">
+  <link rel="stylesheet" href="../../boostrap/css/bootstrap.min.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+</head>
+<body>
+
+<div class="page-header">
+  <h1 class="ms-3">Dashboard</h1>
+  <small class="ms-3">Home / Dashboard</small>
+</div>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-4 col-sm-3" >
+      <label for="txtSearch" class="form-label">Search Your Car</label>
+      <input class="form-control" list="txtData" id="txtSearch"  placeholder="ex : Aqua">
+      <datalist id="txtData">
+        <option>Hello</option>
+        <option>Kollo</option>
+
+      </datalist>
+    </div>
+    <div class="col-md-2 mt-3 pt-3 " style="margin-left: 20px">
+      <button type="button" class="btn btn-outline-success " style="width: 100%" id="btnSearchCar">Search</button>
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-md-2">
+      <label class="pb-2">Car</label>
+      <input type="text" class="form-control" placeholder="Car Name" id="txtName" >
+    </div>
+
+    <div class="col-md-2">
+      <label class="pb-2">Car Type</label>
+      <input type="text" class="form-control" placeholder="Car Type" id="txtType" >
+    </div>
+    <div class="col-md-2">
+      <label class="pb-2">No of Passengers</label>
+      <input type="text" class="form-control" placeholder="Passengers" id="txtPassengers" >
+    </div>
+    <div class="col-md-2">
+      <label class="pb-2">Transmission Type</label>
+      <input type="text" class="form-control" placeholder="Transmission Type" id="txtTransmission" >
+    </div>
+    <div class="col-md-2">
+      <label class="pb-2">Fuel Type</label>
+      <input type="text" class="form-control" placeholder="Fuel Type" id="txtFuel">
+    </div>
+    <div class="col-md-2">
+      <label class="pb-2">Waiver Amount</label>
+      <input type="text" class="form-control" placeholder="Waiver Amount" id="txtWaiver" >
+    </div>
+  </div>
+  <div class="row mt-4 ms-5 ps-3">
+    <div class="col-md-2">
+      <label class="pb-2">Daily Rate</label>
+      <input type="text" class="form-control" placeholder="Daily Rate" id="txtDayR" >
+    </div>
+    <div class="col-md-2">
+      <label class="pb-2">Free Km for a Day</label>
+      <input type="text" class="form-control" placeholder="Free Km for Day" id="txtFreeKmD" >
+    </div>
+    <div class="col-md-2">
+      <label class="pb-2">Monthly Rate</label>
+      <input type="text" class="form-control" placeholder="Monthly Rate" id="txtMonthR" >
+    </div>
+    <div class="col-md-2">
+      <label class="pb-2">Free Km for a month</label>
+      <input type="text" class="form-control" placeholder="Free Km for Month" id="txtFreeKmM" >
+    </div>
+
+
+    <div id="display" class="col-md-3 border border-1 ms-5 mt-4 pt-1" style="height: 260px">
+      <img id="img" src="" alt="This is Your Car..." height="250px" width="285px">
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<script src="../../boostrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../JQuery/jquery-3.6.1.min.js"></script>
+<script>
+
+  loadAllCarNames();
+  function loadAllCarNames(){
+     $("#txtData").empty();
+
+    $.ajax({
+      url:"http://localhost:8080/Easy_Car_Rental_war/customer/name",
+      method: "get",
+      dataType:"json",
+      success:function (resp){
+        for (let car of resp.data) {
+           console.log(resp.data);
+          let row = `<option>${car}</option>`;
+          $("#txtData").append(row);
+        }
+      }
+    });
+  }
+
+  let baseUrl="http://localhost:8080/Easy_Car_Rental_war/";
+  $("#btnSearchCar").click(function (){
+
+    let brand = $("#txtSearch").val();
+
+    $.ajax({
+      url: "http://localhost:8080/Easy_Car_Rental_war/customer?brand="+brand,
+      method: "get",
+      dataType: "json",
+      success:function (resp){
+        console.log(resp)
+        let data = resp.data;
+        console.log(data)
+        let split = data.split("\\carImages\\")[1];
+        console.log(split)
+
+        $("#img").attr('src',"../../img/imgUpload/carImages/"+split );
+
+      }
+
+    });
+
+  });
+
+
+
+
+
+</script>
+</body>
+</html>

@@ -75,6 +75,7 @@ public class CarController {
 
     @PutMapping
     public ResponseUtil updateCarWithoutImg(@RequestBody CarDTO carDTO){
+        System.out.println(carDTO.toString());
         carService.updateCarWithoutImg(carDTO);
         return new ResponseUtil("200", "Successfully Updated..!", null);
     }

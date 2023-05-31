@@ -14,8 +14,8 @@ public interface CarRepo extends JpaRepository<Car,String> {
     int getRowCount();
 
     @Modifying
-    @Query(value = "UPDATE car SET brand=?1, carType=?2, passengers=?3, transmission=?4, fuelType=?5, waiver=?6, dayRate=?7, kmDay=?8, monthRate=?9, kmMonth=?10, WHERE regId=?11", nativeQuery = true)
-    void updateCarWithoutImg(String brand, String carType, String passengers, String transmission, String fuelType, String waiver, String dayRate, String kmDay, String monthRate, String kmMonth, String regId);
+    @Query(value = "UPDATE car SET brand=?1, carType=?2, passengers=?3, transmission=?4,  waiver=?5, dayRate=?6, kmDay=?7, monthRate=?8, kmMonth=?9, WHERE regId=?10", nativeQuery = true)
+    void updateCarWithoutImg(String brand, String carType, String passengers, String transmission, String waiver, String dayRate, String kmDay, String monthRate, String kmMonth, String regId);
 
     Car findCarByRegId(String regID);
 
